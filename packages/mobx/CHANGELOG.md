@@ -1,5 +1,11 @@
 # mobx
 
+## 6.15.1
+
+### Patch Changes
+
+-   [`df81c144fb148b64140d761aa61f032a7f429e12`](https://github.com/mobxjs/mobx/commit/df81c144fb148b64140d761aa61f032a7f429e12) [#4523](https://github.com/mobxjs/mobx/pull/4523) Thanks [@exzos28](https://github.com/exzos28)! - Make `FlowCancellationError` a proper `Error` instance while preserving its previous string representation.
+
 ## 6.15.0
 
 ### Minor Changes
