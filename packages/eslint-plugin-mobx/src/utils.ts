@@ -20,7 +20,11 @@ export function isMobxDecorator(decorator) {
 
 export function findAncestor(node, match) {
     const { parent } = node
-    if (!parent) return
-    if (match(parent)) return parent
+    if (!parent) {
+        return
+    }
+    if (match(parent)) {
+        return parent
+    }
     return findAncestor(parent, match)
 }

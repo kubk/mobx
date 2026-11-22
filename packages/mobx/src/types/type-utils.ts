@@ -57,6 +57,7 @@ export function getAtom(thing: any, property?: PropertyKey): IDepTreeNode {
             return observable
         }
         if (property && !thing[$mobx]) {
+            // oxlint-disable-next-line no-unused-expressions -- reading the property initializes it
             thing[property]
         } // See #1072
         if (isObservableObject(thing)) {

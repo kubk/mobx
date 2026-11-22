@@ -6,8 +6,12 @@ function create(context) {
     return {
         'CallExpression[callee.name="observer"]': observer => {
             const cmp = observer.arguments[0]
-            if (!cmp) return
-            if (cmp?.id?.name) return
+            if (!cmp) {
+                return
+            }
+            if (cmp?.id?.name) {
+                return
+            }
 
             const fix = fixer => {
                 // Use name from variable for autofix
@@ -16,7 +20,9 @@ function create(context) {
                         ? observer.parent.id.name
                         : undefined
 
-                if (!name) return
+                if (!name) {
+                    return
+                }
                 if (cmp.type === "ArrowFunctionExpression") {
                     const arrowToken = sourceCode.getTokenBefore(cmp.body)
                     const fixes = [

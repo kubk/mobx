@@ -25,7 +25,9 @@ function create(context) {
             //           ExpressionStatement
             //             CallExpression[callee.name="makeObservable"]
             const [firstArg, secondArg] = makeObservable.arguments
-            if (!firstArg) return
+            if (!firstArg) {
+                return
+            }
             let members
             if (firstArg.type === "ThisExpression") {
                 const closestFunction = findAncestor(
@@ -33,7 +35,9 @@ function create(context) {
                     node =>
                         node.type === "FunctionExpression" || node.type === "FunctionDeclaration"
                 )
-                if (closestFunction?.parent?.kind !== "constructor") return
+                if (closestFunction?.parent?.kind !== "constructor") {
+                    return
+                }
                 members = closestFunction.parent.parent.parent.body.body
             } else if (firstArg.type === "ObjectExpression") {
                 members = firstArg.properties
@@ -44,9 +48,15 @@ function create(context) {
             const annotationProps = secondArg?.properties || []
             const nonAnnotatedMembers: any[] = []
             members.forEach(member => {
-                if (member.static) return
-                if (member.kind === "constructor") return
-                if (member.decorators?.some(isMobxDecorator)) return
+                if (member.static) {
+                    return
+                }
+                if (member.kind === "constructor") {
+                    return
+                }
+                if (member.decorators?.some(isMobxDecorator)) {
+                    return
+                }
                 if (!annotationProps.some(prop => fieldToKey(prop) === fieldToKey(member))) {
                     nonAnnotatedMembers.push(member)
                 }
